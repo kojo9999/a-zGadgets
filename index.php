@@ -33,6 +33,7 @@
 <table>
             <thead>
                 <tr>
+                    <!-this will need to construct the table presented from elements in the rep DB rather than having a fixed format. It'll be easier to add new parameters to the DB -->
                     <th>Date Crated</th>
                     <th>Repair Number</th>
                     <th>Device Type</th>
@@ -59,6 +60,11 @@
 
 
                     foreach($repairs as $repair) {
+                        /*same this for this one it should just populate from
+                         the existing DB headings into the correct slots
+                        obv this is for later but the structure of the DB will
+                        need to be modified....
+                        */
                         echo "<tr>";
                         echo "<td>" . $repair["dateCreated"] . "</td>";
                         echo "<td>" . $repair["repairNumber"] . "</td>";

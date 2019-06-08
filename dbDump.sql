@@ -33,6 +33,7 @@ CREATE TABLE `repairs` (
   `repairNumber` bigint(20) NOT NULL,
   `deviceType` varchar(255) NOT NULL,
   `brand` varchar(255) NOT NULL,
+  `dName` varchar(255) NOT NULL,
   `model` varchar(255) NOT NULL,
   `colour` varchar(255) NOT NULL,
   `IMEI` varchar(255) NOT NULL,
