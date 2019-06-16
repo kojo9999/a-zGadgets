@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jun 07, 2019 at 10:05 PM
+-- Generation Time: Jun 16, 2019 at 10:35 PM
 -- Server version: 10.1.26-MariaDB
 -- PHP Version: 7.1.9
 
@@ -25,12 +25,25 @@ SET time_zone = "+00:00";
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `comments`
+--
+
+CREATE TABLE `comments` (
+  `mainIndex` bigint(20) NOT NULL,
+  `commentId` bigint(20) NOT NULL,
+  `comment` varchar(255) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `repairs`
 --
 
 CREATE TABLE `repairs` (
+  `mainIndex` bigint(20) NOT NULL,
   `dateCreated` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
-  `repairNumber` bigint(20) NOT NULL,
+  `receiptNumber` bigint(20) NOT NULL,
   `deviceType` varchar(255) NOT NULL,
   `brand` varchar(255) NOT NULL,
   `model` varchar(255) NOT NULL,
@@ -46,36 +59,41 @@ CREATE TABLE `repairs` (
   `dateComplete` varchar(255) NOT NULL,
   `completeBy` varchar(255) NOT NULL,
   `collectionDate` varchar(255) NOT NULL,
-  `notified` varchar(255) NOT NULL,
-  `comments` varchar(255) NOT NULL
+  `notified` varchar(255) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `repairs`
 --
 
-INSERT INTO `repairs` (`dateCreated`, `repairNumber`, `deviceType`, `brand`, `model`, `colour`, `IMEI`, `pin`, `fault`, `cost`, `paid`, `due`, `customerName`, `customerContact`, `dateComplete`, `completeBy`, `collectionDate`, `notified`, `comments`) VALUES
-('2019-06-04 15:01:58', 1, 'Phone', 'Samsung', 's8', 'black', '12345678912344', '1234', 'screen and body', 220, 0, 220, 'Mike Hunt', '0987465320', '04/06/19', 'Zed', '04/06/19', 'yes', 'It fucked tbh');
+INSERT INTO `repairs` (`mainIndex`, `dateCreated`, `receiptNumber`, `deviceType`, `brand`, `model`, `colour`, `IMEI`, `pin`, `fault`, `cost`, `paid`, `due`, `customerName`, `customerContact`, `dateComplete`, `completeBy`, `collectionDate`, `notified`) VALUES
+(0, '2019-06-04 15:01:58', 1, 'Phone', 'Samsung', 's8', 'black', '12345678912344', '1234', 'screen and body', 220, 0, 220, 'Mike Hunt', '0987465320', '04/06/19', 'Zed', '04/06/19', 'yes');
 
 --
 -- Indexes for dumped tables
 --
 
 --
+-- Indexes for table `comments`
+--
+ALTER TABLE `comments`
+  ADD PRIMARY KEY (`commentId`);
+
+--
 -- Indexes for table `repairs`
 --
 ALTER TABLE `repairs`
-  ADD PRIMARY KEY (`repairNumber`);
+  ADD PRIMARY KEY (`mainIndex`);
 
 --
 -- AUTO_INCREMENT for dumped tables
 --
 
 --
--- AUTO_INCREMENT for table `repairs`
+-- AUTO_INCREMENT for table `comments`
 --
-ALTER TABLE `repairs`
-  MODIFY `repairNumber` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+ALTER TABLE `comments`
+  MODIFY `commentId` bigint(20) NOT NULL AUTO_INCREMENT;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
