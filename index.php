@@ -15,17 +15,17 @@
 
     $repairs = $statement -> fetchAll();
 
-   
-    $statement ->closeCursor();
+    $statement -> closeCursor();
 
 ?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <link rel="stylesheet" href="style/index.css">
+    <link rel="stylesheet" href="/style/index.css">
     <title>A&Z Gadgets</title>
 </head>
 <body>
@@ -40,50 +40,36 @@
                     <th>Model</th>
                     <th>Colour</th>
                     <th>IMEI</th>
-                    <th>Pin</th>
                     <th>Fault</th>
                     <th>Cost</th>
-                    <th>Paid</th>
                     <th>Due</th>
                     <th>Name</th>
                     <th>Contact</th>
                     <th>Completed on</th>
-                    <th>CompletedBy</th>
                     <th>Collected on</th>
-                    <th>Notified?</th>
-                    <th>Comments</th>
                 </tr>
             </thead>
             <tbody>
                 <?php
-
-
-                    foreach($repairs as $repair) {
+                    foreach($repairs as $repair) 
+                    {
                         echo "<tr>";
-                        echo "<td>" . $repair["dateCreated"] . "</td>";
-                        echo "<td>" . $repair["repairNumber"] . "</td>";
+
+                        echo "<td><a href='device.php/" . $repair["mainIndex"] . "'>" . $repair["dateCreated"] . "</a></td>";
+                        echo "<td>" . $repair["receiptNumber"] . "</td>";
                         echo "<td>" . $repair["deviceType"] . "</td>";
                         echo "<td>" . $repair["brand"] . "</td>";
                         echo "<td>" . $repair["model"] . "</td>";
                         echo "<td>" . $repair["colour"] . "</td>";
                         echo "<td>" . $repair["IMEI"] . "</td>";
-                        echo "<td>" . $repair["pin"] . "</td>";
                         echo "<td>" . $repair["fault"] . "</td>";
                         echo "<td>" . $repair["cost"] . "</td>";
-                        echo "<td>" . $repair["paid"] . "</td>";
                         echo "<td>" . $repair["due"] . "</td>";
                         echo "<td>" . $repair["customerName"] . "</td>";
                         echo "<td>" . $repair["customerContact"] . "</td>";
                         echo "<td>" . $repair["dateComplete"] . "</td>";
-                        echo "<td>" . $repair["completeBy"] . "</td>";
                         echo "<td>" . $repair["collectionDate"] . "</td>";
-                        echo "<td>" . $repair["notified"] . "</td>";
-                        echo "<td>" . $repair["comments"] . "</td>";
-                        
-                       
-                    
-                    ?>
-                    <?php
+
                         echo "</tr>";
                     }
                 ?>
