@@ -18,6 +18,7 @@
     $statement -> execute();
 
     $dvcInfo = $statement -> fetchAll();
+    $dvcInfo = $dvcInfo[0];
 
     $statement -> closeCursor();
 
@@ -31,13 +32,39 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <link rel="stylesheet" href="style/index.css">
+    <link rel="stylesheet" type="text/css" href="/style/dvc_view_style.css">
     <title>A&Z Gadgets</title>
 </head>
 <body>
-	<p>
-		<?php //echo var_dump($dvcID); ?>
-		<?php echo var_dump($dvcInfo); ?>
-	</p>
+    <div>
+        <div>
+
+        </div>
+    	<div class="row">
+            <div class="col">
+                <div class="dvcEntry">
+                    <?php echo "<p>Brand: " . $dvcInfo['brand'] . "</p>"; ?><br>
+                    <?php echo "<p>Name: " . $dvcInfo['dName'] . "</p>"; ?><br>
+                    <?php echo "<p>Model: " . $dvcInfo['model'] . "</p>"; ?><br><br>
+                    <?php echo "<p>S/N: " . $dvcInfo['IMEI'] . "</p>"; ?><br>
+                    <?php echo "<p>IMEI: " . $dvcInfo['IMEI'] . "</p>"; ?><br>
+                    <?php echo "<p>Passcode: " . $dvcInfo['pin'] . "</p>"; ?><br>
+                    <?php echo "<p>Customer: " . $dvcInfo['customerName'] . "</p>"; ?><br>
+                    <?php echo "<p>Telephone: " . $dvcInfo['customerContact'] . "</p>"; ?><br>
+                    <?php echo "<p>Email: " . $dvcInfo['customerContact'] . "</p>"; ?>
+                </div>
+            </div>
+            <div class="col">
+                
+            </div>
+            <div class="col" style="float:right;">
+                <div class="dvcEntry">
+                    <?php echo "<p>Created: " . $dvcInfo['dateCreated'] . "</p>"; ?><br>
+                    <?php echo "<p>Receipt No.: " . $dvcInfo['receiptNumber'] . "</p>"; ?>
+                </div>
+            </div>
+        </div>
+    </div>
+    <?php var_dump($dvcInfo); ?>
 </body>
 </html>
