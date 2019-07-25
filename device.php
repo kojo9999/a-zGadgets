@@ -18,11 +18,17 @@
     $statement -> execute();
 
     $dvcInfo = $statement -> fetchAll();
-    $dvcInfo = $dvcInfo[0];
+    if ($dvcInfo == NULL) {
+        echo "not found";
+    } else {
+        $dvcInfo = $dvcInfo[0];
+    }
+    
 
     $statement -> closeCursor();
 
-
+    $currententry = $dvcInfo[0];
+    //$_POST['currententry'] = $currententry;
 ?>
 
 
@@ -73,7 +79,36 @@
                 </div>
             </div>
         </div>
+        <div class="events">
+            <?php //in here will be a foreach loop listing all repair entries ?>
+            <?php
+                    $db = new PDO($DBhost, $DBusername, $DBpassword);
+                    $db -> setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+
+                    $query = "SELECT * FROM comments WHERE mainIndex = " . $currententry;
+                    $statement = $db -> prepare($query);
+                    $statement -> execute();
+                    $comments = $statement -> fetchAll();
+                    foreach ($comments as $comment) {
+                        echo "<div class='event'>
+                        <h3>".$comment['commentId']."</h3><br>".
+                        "<p>".$comment['comment']."</p>".
+                        "</div>";
+                    }
+                    $statement -> closeCursor();
+                ?>
+            <div class="event">
+                <form action="/includes/addComDB.php" method="post" >
+                    <?php echo 
+                    "<input type='text' name='currententry' readonly='TRUE' value=".$currententry.">";
+                    ?>
+                    <input type="text" name="comment">
+                    <input type="submit" value="click" name="submit">
+                </form>
+                
+            </div>
+        </div>
     </div>
-    <?php var_dump($dvcInfo); ?>
+    <?php //var_dump($dvcInfo); ?>
 </body>
 </html>

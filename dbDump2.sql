@@ -38,6 +38,7 @@ CREATE TABLE `repairs` (
   `model` varchar(255) NOT NULL,
   `colour` varchar(255) NOT NULL,
   `IMEI` varchar(255) NOT NULL,
+  'serial' varchar(255) DEFAULT NULL,
   `pin` varchar(255) DEFAULT NULL,
   `fault` varchar(255) NOT NULL,
   `cost` double NOT NULL,
@@ -45,6 +46,7 @@ CREATE TABLE `repairs` (
   `due` double NOT NULL,
   `customerName` varchar(255) NOT NULL,
   `customerContact` varchar(255) NOT NULL,
+  'customerEmail' varchar(255) DEFAULT NULL
   `dateComplete` varchar(255) NOT NULL,
   `completeBy` varchar(255) NOT NULL,
   `collectionDate` varchar(255) NOT NULL,

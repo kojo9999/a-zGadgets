@@ -42,8 +42,8 @@ $query = "INSERT INTO `repairs` (
 	"'".$_POST['model']."',". //model no
 	"'black',". //colour
 	"'".$_POST['IMEI']."',". //IMEI
-	"NULL,". //serial no
-	"NULL,". //pin 
+	"'".$_POST['serial']."',". //serial no
+	"'".$_POST['pin']."',". //pin 
 	"'',". //fault
 	"'0',". //cost
 	"'0',". //paid
@@ -60,9 +60,9 @@ $query = "INSERT INTO `repairs` (
 
 $statement = $db -> prepare($query);
 
-$statement -> execute();
+$statement -> execute(); //executes sql query to add entry
 
-
+//second query to get the entry number of most recent entry
 $query2 ="
 SELECT MAX(mainIndex)
   FROM repairs
@@ -72,10 +72,9 @@ SELECT MAX(mainIndex)
 
  $statement -> execute();
 $num = $statement -> fetchAll();
-//var_dump($statement);
-var_dump($num[0][0]);
+
 
 $statement -> closeCursor();
 
-$redirect = "Location: ../device.php/" . $num[0][0];
-header($redirect);
+$redirect = "Location: ../device.php/" . $num[0][0]; //navigate to mainIndex of the entry
+header($redirect); //redirect to that new entry page

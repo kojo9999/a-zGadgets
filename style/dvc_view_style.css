@@ -26,3 +26,12 @@ body {
   display: table;
   clear: both;
 }
+.events {
+  padding: 10px;
+  background: rgb(100,100,0);
+}
+.event {
+  padding: 20px;
+  background-color: rgb(200,0,0);
+  margin-bottom: 10px;
+}
