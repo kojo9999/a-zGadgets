@@ -1,25 +1,100 @@
+* {
+  box-sizing: border-box;
+  margin: 0;
+}
+body {
+  background-color: rgb(200,100,150);
+}
+
 table, th, td {
-    border: 1px solid black;
-  }
-  table {
-    width: 100%;
-  }
-  
-  #tableDiv
-  {
-      width:100%;
+  border: 1px solid black;
+}
 
-  }
-  
-  th {
-    height: 50px;
-    text-align: left;
-  }
+table {
+  width: 100%;
+}
 
-  th, td {
-    padding: 5px;
-    text-align: left;
-  }
+#tableDiv
+{
+  width:100%;
+}
 
-  tr:nth-child(even) {background-color: #f2f2f2;}
+th {
+  height: 50px;
+  text-align: left;
+}
+
+th, td {
+  padding: 5px;
+  text-align: left;
+}
+
+tr:nth-child(even) {
+  background-color: #f2f2f2;
+}
+
+tr:nth-child(odd) {
+  background-color: #ddd;
+}
+
+
+#header {
+  background-color: red;
+}
+
+#banner {
+  text-align: center;
+  padding: 15px;
+}
+
+#nav {
+  width: 100%;
+  background-color: #abc;
+  padding: 5px;
+}
+
+#nav a {
+  text-decoration: none;
+}
+
+#nav a h3{
+  background-color: #abf;
+  width: auto;
+  padding: 5px;
+  color: black;
+}
+
+.row {
+  padding: 10px;
+}
+
+.col {
+  float: left;
+  width: 30%;
   
+  margin-right: 10px;
+  padding: 10px;
+}
+
+.dvcEntry p {
+  background-color: rgb(200,200,200);
+  padding: 10px;
+} 
+
+/* Clear floats after the columns */
+.row:after {
+  content: "";
+  display: table;
+  clear: both;
+}
+
+.events {
+  padding: 10px;
+  background: rgb(100,100,0);
+}
+
+.event {
+  padding: 20px;
+  background-color: rgb(200,0,0);
+  margin-bottom: 10px;
+}

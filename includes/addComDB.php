@@ -1,10 +1,7 @@
 <?php
 if(isset($_POST['submit'])) {
-    $DBhost = "mysql:host=localhost;dbname=a&z_gadgets_db";
-    $DBusername = "root";
-    $DBpassword = "";
-    $db = new PDO($DBhost, $DBusername, $DBpassword);
-    $db -> setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+    
+    include 'connection.includes.php';
 
     $query = "INSERT INTO `comments` (
         `mainIndex`, 
