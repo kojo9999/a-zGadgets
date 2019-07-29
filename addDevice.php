@@ -7,7 +7,7 @@ include 'header.php'
     <div>
 
     </div>
-    <form action="/includes/addDevDB.php" method="post">
+    <form autocomplete="off" action="/includes/addDevDB.php" method="post">
     	<div class="row">
             <div class="col">
                 <div class="dvcEntry">
@@ -39,11 +39,18 @@ include 'header.php'
                 <div class="dvcEntry">
                     <input type="text" name="date" placeholder=<?php echo '"' . date('Y-m-d') . '"'; ?> readonly>
                     <br>
+                    <input type="text" name="dateAdded" placeholder=<?php echo '"' . date('Y-m-d') . '"'; ?>>
+                    <br>
                     <input type="text" name="receiptNumber" placeholder="Receipt No.">
                 </div>
             </div>
         </div>
-        <input type="submit" value="Add Device">
+        <div class="row">
+            <input type="text" name="fault" placeholder="initial fault">
+        </div>
+        <div class="row">
+            <input type="submit" value="Add Device">
+        </div>
     </form>
 </div>
 

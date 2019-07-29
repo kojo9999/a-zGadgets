@@ -11,10 +11,6 @@
     $statement -> closeCursor();
 ?>
 
-<div>
-    <h3><a href="addDevice.php/">Add Device</a></h3>
-</div>
-
 <div id="tableDiv" style="overflow-x:auto;">
     <table>
         <thead>

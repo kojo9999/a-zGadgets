@@ -14,5 +14,6 @@
     		</div>
     		<div id="nav">
     			<a href="../index.php"><h3>Home</h3></a>
+    			<a href="../addDevice.php/"><h3>Add Device</h3></a>
     		</div>
     	</div>

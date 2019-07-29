@@ -23,81 +23,73 @@
     //$_POST['currententry'] = $currententry;
 ?>
 
-
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <link rel="stylesheet" type="text/css" href="/style/dvc_view_style.css">
-    <title>A&Z Gadgets</title>
-</head>
-<body>
+<div>
     <div>
-        <div>
 
-        </div>
-    	<div class="row">
-            <div class="col">
-                <div class="dvcEntry">
-                    <?php echo "<p>Brand: " . $dvcInfo['brand'] . "</p>"; ?>
-                    <br>
-                    <?php echo "<p>Name: " . $dvcInfo['dName'] . "</p>"; ?>
-                    <br>
-                    <?php echo "<p>Model: " . $dvcInfo['model'] . "</p>"; ?>
-                    <br><br>
-                    <?php echo "<p>S/N: " . $dvcInfo['serial'] . "</p>"; ?>
-                    <br>
-                    <?php echo "<p>IMEI: " . $dvcInfo['IMEI'] . "</p>"; ?>
-                    <br>
-                    <?php echo "<p>Passcode: " . $dvcInfo['pin'] . "</p>"; ?>
-                    <br>
-                    
-                </div>
-            </div>
-            <div class="col">
-                <div class="dvcEntry">
-                    <?php echo "<p>Customer: " . $dvcInfo['customerName'] . "</p>"; ?><br>
-                    <?php echo "<p>Telephone: " . $dvcInfo['customerContact'] . "</p>"; ?>
-                    <br>
-                    <?php echo "<p>Email: " . $dvcInfo['customerEmail'] . "</p>"; ?>
-                </div>
-            </div>
-            <div class="col" style="float:right;">
-                <div class="dvcEntry">
-                    <?php echo "<p>Created: " . $dvcInfo['dateCreated'] . "</p>"; ?><br>
-                    <?php echo "<p>Receipt No.: " . $dvcInfo['receiptNumber'] . "</p>"; ?>
-                </div>
+    </div>
+	<div class="row">
+        <div class="col">
+            <div class="dvcEntry">
+                <?php echo "<p>Brand: " . $dvcInfo['brand'] . "</p>"; ?>
+                <br>
+                <?php echo "<p>Name: " . $dvcInfo['dName'] . "</p>"; ?>
+                <br>
+                <?php echo "<p>Model: " . $dvcInfo['model'] . "</p>"; ?>
+                <br><br>
+                <?php echo "<p>S/N: " . $dvcInfo['serial'] . "</p>"; ?>
+                <br>
+                <?php echo "<p>IMEI: " . $dvcInfo['IMEI'] . "</p>"; ?>
+                <br>
+                <?php echo "<p>Passcode: " . $dvcInfo['pin'] . "</p>"; ?>
+                <br>
+                
             </div>
         </div>
-        <div class="events">
-            <?php
-                $query = "SELECT * FROM comments WHERE mainIndex = " . $currententry;
-                $statement = $db -> prepare($query);
-                $statement -> execute();
-                $comments = $statement -> fetchAll();
-                $statement -> closeCursor();
-
-                //next load all the comments
-                foreach ($comments as $comment) {
-                    echo "<div class='event'>
-                    <h3>".$comment['commentId']."</h3><br>".//comment id needs to be replaced with a timestamp
-                    "<p>".$comment['comment']."</p>".
-                    "</div>";
-                }
-            ?>
-            <div class="event">
-                <form action="/includes/addComDB.php" method="post" >
-                    <?php
-                        echo "<input type='text' name='currententry' readonly='TRUE' value=".$currententry.">";
-                    ?>
-                    <input type="text" name="comment">
-                    <input type="submit" value="click" name="submit">
-                </form>
+        <div class="col">
+            <div class="dvcEntry">
+                <?php echo "<p>Customer: " . $dvcInfo['customerName'] . "</p>"; ?><br>
+                <?php echo "<p>Telephone: " . $dvcInfo['customerContact'] . "</p>"; ?>
+                <br>
+                <?php echo "<p>Email: " . $dvcInfo['customerEmail'] . "</p>"; ?>
+            </div>
+        </div>
+        <div class="col" style="float:right;">
+            <div class="dvcEntry">
+                <?php echo "<p>Created: " . $dvcInfo['dateCreated'] . "</p>"; ?><br>
+                <?php echo "<p>Receipt No.: " . $dvcInfo['receiptNumber'] . "</p>"; ?>
             </div>
         </div>
     </div>
-    <?php //var_dump($dvcInfo); ?>
-</body>
-</html>
+    <div class="events">
+        <?php
+            $query = "SELECT * FROM comments WHERE mainIndex = " . $currententry;
+            $statement = $db -> prepare($query);
+            $statement -> execute();
+            $comments = $statement -> fetchAll();
+            $statement -> closeCursor();
+
+            //next load all the comments
+            $eventNum = 1;
+            foreach ($comments as $comment) {
+                echo "<div class='event'>
+                <h3>Event: ".$eventNum."</h3><br>".//comment id needs to be replaced with a timestamp
+                "<h4>Created: ".$comment['dateCreated']."</h4>".
+                "<p>".$comment['comment']."</p>".
+                "</div>";
+                $eventNum ++;
+            }
+        ?>
+        <div class="event">
+            <form action="/includes/addComDB.php" method="post" >
+                <h3>Add an event</h3>
+                <?php
+                    echo "<input type='hidden' name='currententry' readonly='TRUE' value=".$currententry.">";
+                ?>
+                <input type="text" name="comment" placeholder="Event Summary">
+                <input type="submit" value="Add Event" name="submit">
+            </form>
+        </div>
+    </div>
+</div>
+
+<?php include 'footer.php'; ?>

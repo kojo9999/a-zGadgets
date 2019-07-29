@@ -6,12 +6,14 @@ if(isset($_POST['submit'])) {
     $query = "INSERT INTO `comments` (
         `mainIndex`, 
         `commentId`, 
-        `comment`
+        `comment`,
+        `dateCreated`
     ) VALUES ('".
         $_POST['currententry']."',
         NULL,'".
-        $_POST['comment']."'
-    );";
+        $_POST['comment']."',
+        current_timestamp()".
+    ");";
 
     $statement = $db -> prepare($query);
     $statement -> execute();

@@ -2,9 +2,10 @@
 
 include 'connection.includes.php';
     
-$query = "INSERT INTO `repairs` (
+$query1 = "INSERT INTO `repairs` (
 	`mainIndex`,
 	`dateCreated`,
+	`dateAdded`,
 	`receiptNumber`,
 	`deviceType`,
 	`brand`,
@@ -20,6 +21,7 @@ $query = "INSERT INTO `repairs` (
 ) VALUES (
 	NULL, 
 	current_timestamp()," . //timestamp is auto gened
+	"'".$_POST['dateAdded']."',".
 	"'".$_POST['receiptNumber']."',". //rec no
 	"'phone',". //dev type
 	"'".$_POST['brand']."',". //brand
@@ -34,7 +36,7 @@ $query = "INSERT INTO `repairs` (
 	"'".$_POST['customerEmail']."'". //cust email
 ")";
 
-$statement = $db -> prepare($query);
+$statement = $db -> prepare($query1);
 
 $statement -> execute(); //executes sql query to add entry
 
@@ -44,13 +46,28 @@ SELECT MAX(mainIndex)
   FROM repairs
  ";
 
- $statement = $db -> prepare($query2);
+$statement = $db -> prepare($query2);
 
- $statement -> execute();
+$statement -> execute();
 $num = $statement -> fetchAll();
+$num = $num[0][0];
+
+$query3 = "INSERT INTO `comments` (
+        `mainIndex`, 
+        `commentId`, 
+        `comment`
+    ) VALUES ('".
+        $num."',
+        NULL,'".
+        $_POST['fault']."'
+    );";
+
+$statement = $db -> prepare($query3);
+
+$statement -> execute();
 
 
 $statement -> closeCursor();
 
-$redirect = "Location: ../device.php/" . $num[0][0]; //navigate to mainIndex of the entry
+$redirect = "Location: ../device.php/" . $num; //navigate to mainIndex of the entry
 header($redirect); //redirect to that new entry page
