@@ -1,7 +1,15 @@
 <?php
 
 include 'connection.includes.php';
-    
+
+$broughtIn = $_POST['dateAdded'];
+
+if (1 == 0) {
+	$broughtIn = date('m/d/Y h:i:s a', time());
+} else {
+	$broughtIn = "current_timestamp()";
+}
+
 $query1 = "INSERT INTO `repairs` (
 	`mainIndex`,
 	`dateCreated`,
@@ -21,13 +29,13 @@ $query1 = "INSERT INTO `repairs` (
 ) VALUES (
 	NULL, 
 	current_timestamp()," . //timestamp is auto gened
-	"'".$_POST['dateAdded']."',".
+	"current_timestamp(),".
 	"'".$_POST['receiptNumber']."',". //rec no
 	"'phone',". //dev type
 	"'".$_POST['brand']."',". //brand
 	"'".$_POST['dName']."',". //dev name
 	"'".$_POST['model']."',". //model no
-	"'black',". //colour
+	"'".$_POST['colour']."',". //colour
 	"'".$_POST['IMEI']."',". //IMEI
 	"'".$_POST['serial']."',". //serial no
 	"'".$_POST['pin']."',". //pin 

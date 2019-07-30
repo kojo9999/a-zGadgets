@@ -30,16 +30,22 @@
 	<div class="row">
         <div class="col">
             <div class="dvcEntry">
+                <?php echo "<p>Device Type : " . $dvcInfo['deviceType'] . "</p>"; ?>
+                <br>
                 <?php echo "<p>Brand: " . $dvcInfo['brand'] . "</p>"; ?>
                 <br>
                 <?php echo "<p>Name: " . $dvcInfo['dName'] . "</p>"; ?>
                 <br>
                 <?php echo "<p>Model: " . $dvcInfo['model'] . "</p>"; ?>
-                <br><br>
+                <br>
+                <br>
+                <?php echo "<p>Colour: " . $dvcInfo['colour'] . "</p>"; ?>
+                <br>
                 <?php echo "<p>S/N: " . $dvcInfo['serial'] . "</p>"; ?>
                 <br>
                 <?php echo "<p>IMEI: " . $dvcInfo['IMEI'] . "</p>"; ?>
                 <br>
+
                 <?php echo "<p>Passcode: " . $dvcInfo['pin'] . "</p>"; ?>
                 <br>
                 
@@ -47,7 +53,8 @@
         </div>
         <div class="col">
             <div class="dvcEntry">
-                <?php echo "<p>Customer: " . $dvcInfo['customerName'] . "</p>"; ?><br>
+                <?php echo "<p>Customer: " . $dvcInfo['customerName'] . "</p>"; ?>
+                <br>
                 <?php echo "<p>Telephone: " . $dvcInfo['customerContact'] . "</p>"; ?>
                 <br>
                 <?php echo "<p>Email: " . $dvcInfo['customerEmail'] . "</p>"; ?>
@@ -55,8 +62,15 @@
         </div>
         <div class="col" style="float:right;">
             <div class="dvcEntry">
-                <?php echo "<p>Created: " . $dvcInfo['dateCreated'] . "</p>"; ?><br>
+                <?php echo "<p>Created: " . $dvcInfo['dateCreated'] . "</p>"; ?>
+                <br>
+                <?php echo "<p>Created: " . $dvcInfo['dateAdded'] . "</p>"; ?>
+                <br>
                 <?php echo "<p>Receipt No.: " . $dvcInfo['receiptNumber'] . "</p>"; ?>
+                <br>
+                <br>
+                <?php echo "<p>Status: " . $dvcInfo['state'] . "</p>"; ?>
+                
             </div>
         </div>
     </div>
@@ -87,6 +101,13 @@
                 ?>
                 <input type="text" name="comment" placeholder="Event Summary">
                 <input type="submit" value="Add Event" name="submit">
+            </form>
+            <form action="/includes/updateStatus.php" method="post" >
+                <?php
+                    echo "<input type='hidden' name='currententry' readonly='TRUE' value=".$currententry.">";
+                ?>
+                <input type="submit" value="Repair Done" name="done">
+                <input type="submit" value="No Repair" name="notDone">
             </form>
         </div>
     </div>

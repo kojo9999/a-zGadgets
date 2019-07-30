@@ -16,6 +16,8 @@ include 'header.php'
                     <input type="text" name="dName" placeholder="Device Name">
                     <br>
                     <input type="text" name="model" placeholder="Device Model">
+                    <br>
+                    <input type="text" name="colour" placeholder="Device Colour">
                     <br><br>
                     <input type="text" name="serial" placeholder="Device Serial No.">
                     <br>
@@ -23,7 +25,6 @@ include 'header.php'
                     <br>
                     <input type="text" name="pin" placeholder="Device PIN">
                     <br>
-                    
                 </div>
             </div>
             <div class="col">
