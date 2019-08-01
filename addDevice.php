@@ -48,6 +48,10 @@ include 'header.php'
         </div>
         <div class="row">
             <input type="text" name="fault" placeholder="initial fault">
+            <br>
+            <br>
+            <h4>Phone In Shop: </h4>
+            <input type="checkbox" name="devInShop" checked="checked" value="TRUE">
         </div>
         <div class="row">
             <input type="submit" value="Add Device">

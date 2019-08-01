@@ -30,7 +30,16 @@
             <?php
                 foreach($repairs as $repair) 
                 {
-                    echo "<tr>";
+                    if ($repair['state'] == 1) {
+                        $rowCol = "#ee82ee";
+                    } elseif ($repair['state'] == 2) {
+                        $rowCol = "#DC143C";
+                    } elseif ($repair['state'] == 3) {
+                        $rowCol = "#ADFF2F";
+                    } else {
+                        $rowCol = "#ddd";
+                    }
+                    echo "<tr style='background-color: ".$rowCol.";'>";
 
                     echo "<td><a href='device.php/" . $repair["mainIndex"] . "'>" . $repair["dateCreated"] . "</a></td>";
                     echo "<td>" . $repair["receiptNumber"] . "</td>";

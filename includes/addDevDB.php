@@ -9,6 +9,14 @@ if (1 == 0) {
 } else {
 	$broughtIn = "current_timestamp()";
 }
+$devInShop = $_POST['devInShop'];
+
+if ($devInShop == 'TRUE') {
+	$devHere = 1;
+} else {
+	$devHere = 0;
+}
+
 
 $query1 = "INSERT INTO `repairs` (
 	`mainIndex`,
@@ -25,7 +33,8 @@ $query1 = "INSERT INTO `repairs` (
 	`pin`,
 	`customerName`, 
 	`customerContact`, 
-	`customerEmail`
+	`customerEmail`,
+	`devInShop`
 ) VALUES (
 	NULL, 
 	current_timestamp()," . //timestamp is auto gened
@@ -41,7 +50,8 @@ $query1 = "INSERT INTO `repairs` (
 	"'".$_POST['pin']."',". //pin 
 	"'".$_POST['customerName']."',". //cust name
 	"'".$_POST['customerContact']."',". //cust phone
-	"'".$_POST['customerEmail']."'". //cust email
+	"'".$_POST['customerEmail']."',". //cust email
+	$devHere.
 ")";
 
 $statement = $db -> prepare($query1);

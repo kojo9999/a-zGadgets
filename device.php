@@ -70,6 +70,17 @@
                 <br>
                 <br>
                 <?php echo "<p>Status: " . $dvcInfo['state'] . "</p>"; ?>
+                <form action="/includes/updateStatus.php" method="post" >
+                    <?php
+                        echo "<input type='hidden' name='currententry' readonly='TRUE' value=".$currententry.">";
+                    ?>
+                    <br>
+                    <input type="submit" value="Repair Done" name="done">
+                    <input type="submit" value="No Repair" name="notDone">
+                    <br>
+                    <br>
+                    <input type="submit" value="Device Collected" name="collected">
+                </form>
                 
             </div>
         </div>
@@ -102,13 +113,7 @@
                 <input type="text" name="comment" placeholder="Event Summary">
                 <input type="submit" value="Add Event" name="submit">
             </form>
-            <form action="/includes/updateStatus.php" method="post" >
-                <?php
-                    echo "<input type='hidden' name='currententry' readonly='TRUE' value=".$currententry.">";
-                ?>
-                <input type="submit" value="Repair Done" name="done">
-                <input type="submit" value="No Repair" name="notDone">
-            </form>
+            
         </div>
     </div>
 </div>
