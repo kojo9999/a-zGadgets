@@ -41,11 +41,9 @@
                     }
 
                     if ($repair['state'] == 3) {
-                        
-                    } else {
                         echo "<tr style='background-color: ".$rowCol.";'>";
 
-                        echo "<td><a href='device.php/" . $repair["mainIndex"] . "'>" . $repair["dateCreated"] . "</a></td>";
+                        echo "<td><a href='../device.php/" . $repair["mainIndex"] . "'>" . $repair["dateCreated"] . "</a></td>";
                         echo "<td>" . $repair["receiptNumber"] . "</td>";
                         echo "<td>" . $repair["deviceType"] . "</td>";
                         echo "<td>" . $repair["brand"] . "</td>";
@@ -56,7 +54,7 @@
                         echo "<td>" . $repair["customerContact"] . "</td>";
 
                         echo "</tr>";
-                    }   
+                    }  
                 }
             ?>
         </tbody>

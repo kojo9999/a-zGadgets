@@ -39,14 +39,7 @@
                 <?php echo "<p>Model: " . $dvcInfo['model'] . "</p>"; ?>
                 <br>
                 <br>
-                <?php echo "<p>Colour: " . $dvcInfo['colour'] . "</p>"; ?>
-                <br>
-                <?php echo "<p>S/N: " . $dvcInfo['serial'] . "</p>"; ?>
-                <br>
-                <?php echo "<p>IMEI: " . $dvcInfo['IMEI'] . "</p>"; ?>
-                <br>
-
-                <?php echo "<p>Passcode: " . $dvcInfo['pin'] . "</p>"; ?>
+                
                 <br>
                 
             </div>
@@ -58,6 +51,15 @@
                 <?php echo "<p>Telephone: " . $dvcInfo['customerContact'] . "</p>"; ?>
                 <br>
                 <?php echo "<p>Email: " . $dvcInfo['customerEmail'] . "</p>"; ?>
+                <br>
+                <?php echo "<p>Colour: " . $dvcInfo['colour'] . "</p>"; ?>
+                <br>
+                <?php echo "<p>S/N: " . $dvcInfo['serial'] . "</p>"; ?>
+                <br>
+                <?php echo "<p>IMEI: " . $dvcInfo['IMEI'] . "</p>"; ?>
+                <br>
+
+                <?php echo "<p>Passcode: " . $dvcInfo['pin'] . "</p>"; ?>
             </div>
         </div>
         <div class="col" style="float:right;">
@@ -73,13 +75,31 @@
                 <form action="/includes/updateStatus.php" method="post" >
                     <?php
                         echo "<input type='hidden' name='currententry' readonly='TRUE' value=".$currententry.">";
+
+                        if ($dvcInfo['state'] == 1 || $dvcInfo['state'] == 2 || $dvcInfo['state'] == 3) {
+                    ?>
+                    <style type="text/css">
+                        #donebtn{display:none;}
+                        #nodonebtn{display:none;}
+                        #collbtn{display:none;}
+                    </style>
+                    <?php
+                    } else {
+                        ?>
+                        <style type="text/css">
+                            #reopbtn{display:none;}
+                        </style>
+                    <?php
+                    }
+
                     ?>
                     <br>
-                    <input type="submit" value="Repair Done" name="done">
-                    <input type="submit" value="No Repair" name="notDone">
+                    <input id="donebtn" type="submit" value="Repair Done" name="done">
+                    <input id="nodonebtn" type="submit" value="No Repair" name="notDone">
                     <br>
                     <br>
-                    <input type="submit" value="Device Collected" name="collected">
+                    <input id="collbtn" type="submit" value="Device Collected" name="collected">
+                    <input id="reopbtn" type="submit" value="Re-open repair" name="reOpen">
                 </form>
                 
             </div>
@@ -97,8 +117,8 @@
             $eventNum = 1;
             foreach ($comments as $comment) {
                 echo "<div class='event'>
-                <h3>Event: ".$eventNum."</h3><br>".//comment id needs to be replaced with a timestamp
-                "<h4>Created: ".$comment['dateCreated']."</h4>".
+                <br>".//comment id needs to be replaced with a timestamp
+                "<h5>Created: ".$comment['dateCreated']."</h4>".
                 "<p>".$comment['comment']."</p>".
                 "</div>";
                 $eventNum ++;
@@ -107,6 +127,7 @@
         <div class="event">
             <form action="/includes/addComDB.php" method="post" >
                 <h3>Add an event</h3>
+                <br>
                 <?php
                     echo "<input type='hidden' name='currententry' readonly='TRUE' value=".$currententry.">";
                 ?>

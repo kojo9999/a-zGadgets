@@ -49,6 +49,26 @@ if (isset($_POST['collected'])) {
     $statement = $db -> prepare($query2);
     $statement -> execute();
 }
+
+if (isset($_POST['reOpen'])) {
+    $query = "UPDATE `repairs` SET `state` = '0' WHERE `repairs`.`mainIndex` = ".$_POST['currententry'];
+    $query2 ="INSERT INTO `comments` (
+        `mainIndex`, 
+        `commentId`, 
+        `comment`,
+        `dateCreated`
+    ) VALUES ('".
+        $_POST['currententry']."',
+        NULL,
+        'Repair re-opened',
+        current_timestamp()".
+    ");";
+    
+    $statement = $db -> prepare($query2);
+    $statement -> execute();
+}
+
+
 $statement = $db -> prepare($query);
 $statement -> execute();
 $statement -> closeCursor();

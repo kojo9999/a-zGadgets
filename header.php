@@ -15,5 +15,6 @@
     		<div id="nav">
     			<a href="../index.php"><h3>Home</h3></a>
     			<a href="../addDevice.php/"><h3>Add Device</h3></a>
+                <a href="../done.php/"><h3>Collected Devices</h3></a>
     		</div>
     	</div>
